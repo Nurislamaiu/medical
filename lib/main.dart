@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:medical/screens/splash_screen.dart';
+import 'app/app_routes.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      home: Scaffold()
+      debugShowCheckedModeBanner: false,
+      title: 'Medical Services App',
+      initialRoute: AppRoutes.splash,
+      routes: AppRoutes.getRoutes(),
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: SplashScreen(),
     );
   }
 }
