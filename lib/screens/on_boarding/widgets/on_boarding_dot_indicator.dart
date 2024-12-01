@@ -13,7 +13,13 @@ class OnBoardingDotIndicator extends StatelessWidget {
       height: 10,
       width: isActive ? 20 : 10,
       decoration: BoxDecoration(
-        color: isActive ? Colors.blue : Colors.grey,
+        gradient: isActive
+            ? LinearGradient(
+          colors: [Colors.blue, Colors.purple],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        )
+            : LinearGradient(colors: [Colors.grey, Colors.grey]),
         borderRadius: BorderRadius.circular(5),
       ),
     );

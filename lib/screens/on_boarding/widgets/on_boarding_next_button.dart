@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class NextButton extends StatelessWidget {
   final bool isLastPage;
   final VoidCallback onNext;
+  final String buttonText;
 
-  const NextButton({required this.isLastPage, required this.onNext});
+  const NextButton({required this.isLastPage, required this.onNext, required this.buttonText});
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +27,8 @@ class NextButton extends StatelessWidget {
             height: 50,
             width: double.infinity,
             child: Text(
-              isLastPage ? "Начать" : "Далее",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+                buttonText,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
             ),
           ),
         ),
