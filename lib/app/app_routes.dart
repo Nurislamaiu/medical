@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:medical/screens/auth/register/info_screen.dart';
 
+import '../screens/auth/login/login_screen.dart';
+import '../screens/auth/register/register_screen.dart';
+import '../screens/home/home_screen.dart';
 import '../screens/on_boarding/on_boarding_screen.dart';
 import '../screens/splash_screen.dart';
 
@@ -8,6 +12,7 @@ class AppRoutes {
   static const String onboarding = '/onboarding';
   static const String login = '/login';
   static const String register = '/register';
+  static const String userInfo = '/user-info';
   static const String home = '/home';
 
   // Пути для пациента
@@ -26,9 +31,10 @@ class AppRoutes {
     return {
       splash: (context) => SplashScreen(),
       onboarding: (context) => OnboardingScreen(),
-      // login: (context) => LoginScreen(),
-      // register: (context) => RegisterScreen(),
-      // home: (context) => HomeScreen(),
+      login: (context) => LoginScreen(),
+      register: (context) => RegisterScreen(),
+      userInfo: (context) => UserInfoScreen(),
+      home: (context) => HomeScreen(),
       //
       // // Маршруты для пациента
       // newRequest: (context) => NewRequestScreen(),

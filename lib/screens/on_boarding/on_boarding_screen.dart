@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:medical/screens/on_boarding/widgets/on_boarding_dot_indicator.dart';
 import 'package:medical/screens/on_boarding/widgets/on_boarding_next_button.dart';
 import 'package:medical/screens/on_boarding/widgets/on_boarding_page.dart';
+import 'package:medical/utils/color_screen.dart';
 
 import '../../110n/app_localizations.dart';
 import '../../main.dart';
@@ -43,14 +44,24 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         return false;
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: ScreenColor.background,
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: ScreenColor.background,
           automaticallyImplyLeading: false,
+
+          /// Смена языка
           title: DropdownButton<Locale>(
             value: _selectedLocale,
-            underline: SizedBox(width: 20),
-            icon: Icon(Icons.language, color: Colors.blue),
+            underline: const SizedBox(),
+            dropdownColor: ScreenColor.white,
+            borderRadius: BorderRadius.circular(15),
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: ScreenColor.color2, // Цвет текста для выбранного пункта
+            ),
+            isExpanded: false,
+            icon: const Icon(Icons.language, color: ScreenColor.color2,),
             onChanged: (Locale? newLocale) {
               if (newLocale != null) {
                 setState(() {
@@ -59,7 +70,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 });
               }
             },
-            items: [
+            items: const [
               DropdownMenuItem(
                 value: Locale('en'),
                 child: Text('English'),
@@ -74,20 +85,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
             ],
           ),
-          actions: [
+            actions: [
             TextButton(
               onPressed: () {
-                Navigator.pushReplacementNamed(context, '/home');
+                Navigator.pushReplacementNamed(context, '/login');
               },
               child: Text(
                 AppLocalizations.of(context).translate('skip'),
-                style: TextStyle(fontSize: 16, color: Colors.blue),
+                style: TextStyle(fontSize: 16, color: ScreenColor.color2),
               ),
             ),
           ],
         ),
         body: Column(
           children: [
+
+            /// Image and Title, SubTitle
             Expanded(
               child: PageView.builder(
                 controller: _pageController,
@@ -106,6 +119,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
             ),
             SizedBox(height: 20),
+
+            /// Dot Indicator
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
@@ -115,12 +130,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
+
+            /// Next Button
             NextButton(
               isLastPage: _currentPage == onboardingData.length - 1,
               onNext: () {
                 if (_currentPage == onboardingData.length - 1) {
-                  Navigator.pushReplacementNamed(context, '/home');
+                  Navigator.pushReplacementNamed(context, '/login');
                 } else {
                   _pageController.nextPage(
                     duration: Duration(milliseconds: 300),

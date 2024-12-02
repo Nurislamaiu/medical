@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medical/utils/color_screen.dart';
 import '../utils/size_screen.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -11,7 +12,7 @@ class SplashScreen extends StatelessWidget {
     });
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: ScreenColor.color5,
       body: Center(
         child: Image.asset(
           'assets/images/logo.png',

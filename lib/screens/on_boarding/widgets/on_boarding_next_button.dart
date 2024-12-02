@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../utils/color_screen.dart';
+
 class NextButton extends StatelessWidget {
   final bool isLastPage;
   final VoidCallback onNext;
@@ -13,14 +15,12 @@ class NextButton extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
       child: InkWell(
         onTap: onNext,
+        highlightColor: Colors.transparent,
+        splashColor: Colors.transparent,
         child: Ink(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Colors.blue, Colors.purple], // Цвета градиента
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-            borderRadius: BorderRadius.circular(30), // Скруглённые углы
+            color: ScreenColor.color2,
+            borderRadius: BorderRadius.circular(30),
           ),
           child: Container(
             alignment: Alignment.center,
@@ -28,7 +28,7 @@ class NextButton extends StatelessWidget {
             width: double.infinity,
             child: Text(
                 buttonText,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: ScreenColor.white)
             ),
           ),
         ),
