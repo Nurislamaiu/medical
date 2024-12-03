@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medical/nav_bar.dart';
 import 'package:medical/screens/auth/register/info_screen.dart';
 import 'package:medical/screens/service/service_screen.dart';
 
@@ -6,6 +7,8 @@ import '../screens/auth/login/login_screen.dart';
 import '../screens/auth/register/register_screen.dart';
 import '../screens/home/home_screen.dart';
 import '../screens/on_boarding/on_boarding_screen.dart';
+import '../screens/patient/request_history_screen.dart';
+import '../screens/patient/request_new_screen.dart';
 import '../screens/splash_screen.dart';
 
 class AppRoutes {
@@ -14,11 +17,12 @@ class AppRoutes {
   static const String login = '/login';
   static const String register = '/register';
   static const String userInfo = '/user-info';
+  static const String navBar = '/nav-bar';
   static const String home = '/home';
   static const String service = '/service';
 
   // Пути для пациента
-  static const String newRequest = '/patient/new-request';
+  static const String requestNew = '/patient/new-request';
   static const String requestHistory = '/patient/request-history';
 
   // Пути для медсестры
@@ -36,12 +40,13 @@ class AppRoutes {
       login: (context) => LoginScreen(),
       register: (context) => RegisterScreen(),
       userInfo: (context) => UserInfoScreen(),
+      navBar: (context) => NavBarScreen(),
       home: (context) => HomeScreen(),
       service: (context) => ServiceScreen(),
       //
       // // Маршруты для пациента
-      // newRequest: (context) => NewRequestScreen(),
-      // requestHistory: (context) => RequestHistoryScreen(),
+      requestNew: (context) => RequestNewScreen(),
+      requestHistory: (context) => RequestHistoryScreen(),
       //
       // // Маршруты для медсестры
       // activeRequests: (context) => ActiveRequestsScreen(),

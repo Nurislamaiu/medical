@@ -29,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
-      Navigator.pushReplacementNamed(context, '/home');
+      Navigator.pushReplacementNamed(context, '/nav-bar');
     } on FirebaseAuthException catch (e) {
       Get.snackbar("Ошибка", "Неизвестная ошибка");
     } finally {

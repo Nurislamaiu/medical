@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: currentUser == null ? AppRoutes.onboarding : AppRoutes.home, // Проверка на null
+      initialRoute: currentUser == null ? AppRoutes.onboarding : AppRoutes.navBar, // Проверка на null
       routes: AppRoutes.getRoutes(),
       locale: _locale,
       supportedLocales: const [

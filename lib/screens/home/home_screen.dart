@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:medical/110n/app_localizations.dart';
 import 'package:medical/screens/home/widgets/home_action_button.dart';
@@ -10,85 +11,51 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  int _currentIndex = 0; // Индекс текущей вкладки
-
-  // Список экранов для навигации
-  final List<Widget> _screens = [
-    HomeContent(), // Ваш Home Screen
-    ServicesScreen(),
-    NotificationsScreen(),
-    ProfileScreen(),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: _screens[_currentIndex], // Отображение текущего экрана
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index; // Обновляем индекс выбранной вкладки
-          });
-        },
-        backgroundColor: ScreenColor.white,
-        selectedItemColor: ScreenColor.color6,
-        unselectedItemColor: ScreenColor.color2,
-        type: BottomNavigationBarType.fixed,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Главная',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.access_time_outlined),
-            label: 'Заявки',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: 'Уведомления',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: 'Профиль',
-          ),
-        ],
-      ),
-    );
+Future<void> signOutUser() async {
+  try {
+    await FirebaseAuth.instance.signOut();
+    print('Пользователь вышел из системы');
+  } catch (e) {
+    print('Ошибка при выходе: $e');
   }
 }
 
-// Содержимое вкладки Home
-class HomeContent extends StatelessWidget {
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: ScreenColor.white,
-        body: SingleChildScrollView(
+    return Scaffold(
+      backgroundColor: ScreenColor.white,
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Баннер
               Container(
+                width: double.infinity,
+                height: ScreenSize(context).height * 0.25,
                 padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: ScreenColor.color6,
-                  borderRadius: BorderRadius.only(
+                  gradient: LinearGradient(
+                    colors: [ScreenColor.color6, ScreenColor.color6.withOpacity(0.2)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(20),
                     bottomRight: Radius.circular(20),
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: ScreenColor.color6.withOpacity(0.5),
-                      blurRadius: 15,
-                      offset: Offset(0, 8),
+                      blurRadius: 20,
+                      offset: Offset(0, 10),
                     ),
                   ],
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       AppLocalizations.of(context).translate('your_health'),
@@ -104,13 +71,14 @@ class HomeContent extends StatelessWidget {
                         backgroundColor: ScreenColor.white,
                         foregroundColor: ScreenColor.color6,
                         padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      onPressed: () {
-                        // Действие для кнопки
+                      onPressed: () async {
+                        await signOutUser();
+                        Navigator.pushReplacementNamed(context, '/login');
                       },
                       child: Text(AppLocalizations.of(context)
                           .translate('submit_application')),
@@ -188,29 +156,5 @@ class HomeContent extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-// Заглушка для экрана "Услуги"
-class ServicesScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('Услуги', style: TextStyle(fontSize: 24)));
-  }
-}
-
-// Заглушка для экрана "Уведомления"
-class NotificationsScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('Уведомления', style: TextStyle(fontSize: 24)));
-  }
-}
-
-// Заглушка для экрана "Профиль"
-class ProfileScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('Профиль', style: TextStyle(fontSize: 24)));
   }
 }

@@ -85,7 +85,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
       });
 
       // Переход на главный экран
-      Navigator.pushReplacementNamed(context, '/home');
+      Navigator.pushReplacementNamed(context, '/nav-bar');
     } catch (e) {
       Get.snackbar(
         AppLocalizations.of(context).translate('error'),
