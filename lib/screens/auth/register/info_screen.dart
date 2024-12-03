@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -30,10 +31,22 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final args =
-    ModalRoute.of(context)!.settings.arguments as Map<String, String>;
-    userId = args['userId']!; // Получаем userId из аргументов
+
+    // Получаем текущего пользователя из FirebaseAuth
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      userId = user.uid; // Устанавливаем userId как UID пользователя
+    } else {
+      // Обработка случая, если пользователь не авторизован
+      Get.snackbar(
+        AppLocalizations.of(context).translate('error'),
+        AppLocalizations.of(context).translate('user_not_authenticated'),
+      );
+      Navigator.pushReplacementNamed(context, '/register'); // Перенаправление на экран входа
+    }
   }
+
 
   void _saveUserInfo() async {
     // Получаем данные из текстовых полей
@@ -63,7 +76,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
 
     try {
       // Обновляем данные пользователя в Firestore
-      await FirebaseFirestore.instance.collection('users').add({
+      await FirebaseFirestore.instance.collection('users').doc(userId).set({
         'name': name,
         'age': age,
         'address': address,
@@ -85,7 +98,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ScreenColor.background,
+      backgroundColor: ScreenColor.white,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -215,7 +228,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
       ),
       child: Row(
         children: [
-          const Icon(Icons.accessibility, color: ScreenColor.color2),
+          const Icon(Icons.accessibility, color: ScreenColor.color6),
           const SizedBox(width: 10),
           Text(AppLocalizations.of(context).translate('paul'),
               style: TextStyle(color: ScreenColor.color2)),
@@ -260,7 +273,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
               fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white)),
       style: ElevatedButton.styleFrom(
         minimumSize: Size(double.infinity, 55),
-        backgroundColor: ScreenColor.color1,
+        backgroundColor: ScreenColor.color6,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),

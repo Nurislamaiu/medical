@@ -31,5 +31,14 @@
   "paul": "Жыныс: ",
   "error_info_screen": "Пайдаланушы деректерін сақтау мүмкін болмады",
   "error": "Кате",
-  "invalid_phone_number": "Дұрыс емес нөмір"
+  "invalid_phone_number": "Дұрыс емес нөмір",
+  "your_health": "Сіздің денсаулығыңыз сенімді қолда!",
+  "submit_application": "Өтініш қалдыру",
+  "services": "Қызметтер",
+  "consultation": "Кеңес беру",
+  "why_choose_us": "Неліктен бізді таңдайды:",
+  "qualified_specialists": "Білікті мамандар",
+  "sterility_and_safety": "Стерильділік және қауіпсіздік",
+  "availability": "Қол жетімділік 24/7",
+  "fast_delivery": "Дәрі-дәрмектерді жылдам жеткізу"
 }

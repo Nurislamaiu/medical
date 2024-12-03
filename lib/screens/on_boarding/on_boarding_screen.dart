@@ -44,9 +44,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         return false;
       },
       child: Scaffold(
-        backgroundColor: ScreenColor.background,
+        backgroundColor: ScreenColor.white,
         appBar: AppBar(
-          backgroundColor: ScreenColor.background,
+          backgroundColor: ScreenColor.white,
           automaticallyImplyLeading: false,
 
           /// Смена языка
@@ -61,7 +61,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               color: ScreenColor.color2, // Цвет текста для выбранного пункта
             ),
             isExpanded: false,
-            icon: const Icon(Icons.language, color: ScreenColor.color2,),
+            icon: const Icon(Icons.language, color: ScreenColor.color6,),
             onChanged: (Locale? newLocale) {
               if (newLocale != null) {
                 setState(() {

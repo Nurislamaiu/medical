@@ -31,5 +31,14 @@
   "paul": "Пол: ",
   "error_info_screen": "Не удалось сохранить данные пользователя",
   "error": "Ошибка",
-  "invalid_phone_number": "Не верный валидация номера"
+  "invalid_phone_number": "Не верный валидация номера",
+  "your_health": "Ваше здоровье в надежных руках!",
+  "submit_application": "Оставить заявку",
+  "services": "Услуги",
+  "consultation": "Консультация",
+  "why_choose_us": "Почему выбирают нас:",
+  "qualified_specialists": "Квалифицированные специалисты",
+  "sterility_and_safety": "Стерильность и безопасность",
+  "availability": "Доступность 24/7",
+  "fast_delivery": "Быстрая доставка медикаментов"
 }

@@ -19,7 +19,7 @@ class NextButton extends StatelessWidget {
         splashColor: Colors.transparent,
         child: Ink(
           decoration: BoxDecoration(
-            color: ScreenColor.color2,
+            color: ScreenColor.color6,
             borderRadius: BorderRadius.circular(30),
           ),
           child: Container(

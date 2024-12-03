@@ -27,7 +27,7 @@ class CustomTextField extends StatefulWidget {
 }
 
 class _CustomTextFieldState extends State<CustomTextField> {
-  bool _isObscured = true;
+  bool _isObscured = false;
 
   @override
   void initState() {
@@ -45,7 +45,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       inputFormatters: widget.inputFormatters, // Применяем маски ввода
       decoration: InputDecoration(
         labelText: widget.label,
-        prefixIcon: Icon(widget.icon, color: ScreenColor.color2),
+        prefixIcon: Icon(widget.icon, color: ScreenColor.color6),
         suffixIcon: widget.obscureText
             ? IconButton(
           icon: Icon(

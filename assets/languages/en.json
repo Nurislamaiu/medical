@@ -31,5 +31,15 @@
   "paul": "Paul: ",
   "error_info_screen": "User data could not be saved",
   "error": "Error",
-  "invalid_phone_number": "Incorrect number validation"
+  "invalid_phone_number": "Incorrect number validation",
+  "your_health": "Your health is in good hands!",
+  "submit_application": "Submit your application",
+  "services": "Services",
+  "consultation": "Consultation",
+  "why_choose_us": "Why choose us:",
+  "qualified_specialists": "Qualified specialists",
+  "sterility_and_safety": "Sterility and safety",
+  "availability": "Availability 24/7",
+  "fast_delivery": "Fast delivery of medications"
+
 }

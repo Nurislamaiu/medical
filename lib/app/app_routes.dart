@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medical/screens/auth/register/info_screen.dart';
+import 'package:medical/screens/service/service_screen.dart';
 
 import '../screens/auth/login/login_screen.dart';
 import '../screens/auth/register/register_screen.dart';
@@ -14,6 +15,7 @@ class AppRoutes {
   static const String register = '/register';
   static const String userInfo = '/user-info';
   static const String home = '/home';
+  static const String service = '/service';
 
   // Пути для пациента
   static const String newRequest = '/patient/new-request';
@@ -35,6 +37,7 @@ class AppRoutes {
       register: (context) => RegisterScreen(),
       userInfo: (context) => UserInfoScreen(),
       home: (context) => HomeScreen(),
+      service: (context) => ServiceScreen(),
       //
       // // Маршруты для пациента
       // newRequest: (context) => NewRequestScreen(),
