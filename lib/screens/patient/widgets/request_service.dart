@@ -52,6 +52,7 @@ class RequestService {
       });
 
       Get.snackbar('Заявка создана', 'Ваша заявка на услугу $selectedService успешно создана.');
+
     }
   }
 }

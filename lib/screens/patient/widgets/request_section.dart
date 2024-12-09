@@ -21,7 +21,7 @@ class SectionWidget extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           gradient: const LinearGradient(
-            colors: [ScreenColor.color5, ScreenColor.background],
+            colors: [ScreenColor.background, Colors.white70],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),

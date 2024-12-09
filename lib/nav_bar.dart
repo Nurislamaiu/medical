@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:medical/screens/home/home_screen.dart';
 import 'package:medical/screens/patient/request_history_screen.dart';
 import 'package:medical/utils/color_screen.dart';
@@ -36,19 +37,19 @@ class _NavBarScreenState extends State<NavBarScreen> {
         type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Iconsax.home),
             label: 'Главная',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.access_time_outlined),
+            icon: Icon(Iconsax.clock),
             label: 'Заявки',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
+            icon: Icon(Iconsax.notification),
             label: 'Уведомления',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
+            icon: Icon(Iconsax.user),
             label: 'Профиль',
           ),
         ],

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../utils/color_screen.dart';
+import '../../../../utils/color_screen.dart';
 
 class NextButton extends StatelessWidget {
   final bool isLastPage;

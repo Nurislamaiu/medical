@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:medical/screens/on_boarding/widgets/on_boarding_dot_indicator.dart';
-import 'package:medical/screens/on_boarding/widgets/on_boarding_next_button.dart';
-import 'package:medical/screens/on_boarding/widgets/on_boarding_page.dart';
+import 'package:medical/screens/auth/on_boarding/widgets/on_boarding_dot_indicator.dart';
+import 'package:medical/screens/auth/on_boarding/widgets/on_boarding_next_button.dart';
+import 'package:medical/screens/auth/on_boarding/widgets/on_boarding_page.dart';
 import 'package:medical/utils/color_screen.dart';
 
-import '../../110n/app_localizations.dart';
-import '../../main.dart';
+import '../../../110n/app_localizations.dart';
+import '../../../main.dart';
 
 class OnboardingScreen extends StatefulWidget {
   @override

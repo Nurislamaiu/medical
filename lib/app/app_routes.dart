@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:medical/nav_bar.dart';
 import 'package:medical/screens/auth/register/info_screen.dart';
-import 'package:medical/screens/service/service_screen.dart';
-
 import '../screens/auth/login/login_screen.dart';
+import '../screens/auth/on_boarding/on_boarding_screen.dart';
 import '../screens/auth/register/register_screen.dart';
+import '../screens/home/consultation/consultation_book_screen.dart';
+import '../screens/home/consultation/consultation_doctors_screen.dart';
+import '../screens/home/consultation/consultation_knowledge_base_screen.dart';
+import '../screens/home/consultation/consultation_screen.dart';
 import '../screens/home/home_screen.dart';
-import '../screens/on_boarding/on_boarding_screen.dart';
+import '../screens/home/service/service_screen.dart';
 import '../screens/patient/request_history_screen.dart';
 import '../screens/patient/request_new_screen.dart';
 import '../screens/splash_screen.dart';
@@ -20,11 +23,14 @@ class AppRoutes {
   static const String navBar = '/nav-bar';
   static const String home = '/home';
   static const String service = '/service';
+  static const String consultation = '/consultation';
+  static const String doctorDetails = '/doctor-details';
+  static const String bookConsultation = '/book-consultation';
+  static const String knowledgeBase = '/knowledge-base';
 
   // Пути для пациента
   static const String requestNew = '/patient/new-request';
   static const String requestHistory = '/patient/request-history';
-
   // Пути для медсестры
   static const String activeRequests = '/nurse/active-requests';
   static const String completedRequests = '/nurse/completed-requests';
@@ -43,6 +49,10 @@ class AppRoutes {
       navBar: (context) => NavBarScreen(),
       home: (context) => HomeScreen(),
       service: (context) => ServiceScreen(),
+      consultation: (context) => ConsultationScreen(),
+      doctorDetails: (context) => DoctorDetailsScreen(),
+      bookConsultation: (context) => BookConsultationScreen(),
+      knowledgeBase: (context) => ConsultationKnowledgeBaseScreen(),
       //
       // // Маршруты для пациента
       requestNew: (context) => RequestNewScreen(),

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:medical/110n/app_localizations.dart';
 import 'package:medical/screens/home/widgets/home_action_button.dart';
 import 'package:medical/screens/home/widgets/home_advantage_tile.dart';
@@ -25,15 +26,14 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ScreenColor.white,
-      body: SafeArea(
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Баннер
               Container(
                 width: double.infinity,
-                height: ScreenSize(context).height * 0.25,
+                height: ScreenSize(context).height * 0.30,
                 padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -57,6 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    SizedBox(height: 10),
                     Text(
                       AppLocalizations.of(context).translate('your_health'),
                       style: const TextStyle(
@@ -94,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     ActionButton(
-                      icon: Icons.medical_services,
+                      icon: Icons.medical_information_outlined,
                       label: AppLocalizations.of(context).translate('services'),
                       color: ScreenColor.color6,
                       onTap: () {
@@ -102,11 +103,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                     ),
                     ActionButton(
-                      icon: Icons.chat,
+                      icon: Iconsax.chart,
                       label: AppLocalizations.of(context)
                           .translate('consultation'),
                       color: ScreenColor.color6,
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, '/consultation');
+                      },
                     ),
                   ],
                 ),
@@ -154,7 +157,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-      ),
     );
   }
 }

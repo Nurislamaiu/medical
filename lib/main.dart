@@ -24,7 +24,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Locale _locale = Locale('ru');
-  User? currentUser;  // Сделаем currentUser nullable, чтобы избежать ошибки
+  User? currentUser;
 
   @override
   void initState() {
@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: currentUser == null ? AppRoutes.onboarding : AppRoutes.navBar, // Проверка на null
+      initialRoute: currentUser == null ? AppRoutes.onboarding : AppRoutes.navBar,
       routes: AppRoutes.getRoutes(),
       locale: _locale,
       supportedLocales: const [
