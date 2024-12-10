@@ -33,7 +33,6 @@ class ConsultationKnowledgeBaseScreen extends StatelessWidget {
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio: 1.1,
                     crossAxisSpacing: 5.0,
                     mainAxisSpacing: 5.0,
                   ),

@@ -12,15 +12,6 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-Future<void> signOutUser() async {
-  try {
-    await FirebaseAuth.instance.signOut();
-    print('Пользователь вышел из системы');
-  } catch (e) {
-    print('Ошибка при выходе: $e');
-  }
-}
-
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
@@ -77,9 +68,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      onPressed: () async {
-                        await signOutUser();
-                        Navigator.pushReplacementNamed(context, '/login');
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/patient/new-request');
                       },
                       child: Text(AppLocalizations.of(context)
                           .translate('submit_application')),

@@ -32,22 +32,21 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    // Получаем текущего пользователя из FirebaseAuth
     final user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
-      userId = user.uid; // Устанавливаем userId как UID пользователя
+      userId = user.uid;
     } else {
-      // Обработка случая, если пользователь не авторизован
       Get.snackbar(
         AppLocalizations.of(context).translate('error'),
         AppLocalizations.of(context).translate('user_not_authenticated'),
       );
-      Navigator.pushReplacementNamed(context, '/register'); // Перенаправление на экран входа
+      Navigator.pushReplacementNamed(context, '/register');
     }
   }
 
 
+  /// Save user info to firebase
   void _saveUserInfo() async {
     // Получаем данные из текстовых полей
     String name = _nameController.text;
@@ -56,7 +55,6 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
     String phone = _phoneController.text;
     String gender = _gender;
 
-    // Проверка на пустые поля
     if (name.isEmpty || age.isEmpty || address.isEmpty || phone.isEmpty || gender == 'Не выбран') {
       Get.snackbar(
         AppLocalizations.of(context).translate('error'),
@@ -75,17 +73,28 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
     }
 
     try {
-      // Обновляем данные пользователя в Firestore
-      await FirebaseFirestore.instance.collection('users').doc(userId).set({
-        'name': name,
-        'age': age,
-        'address': address,
-        'phone': phone,
-        'gender': gender,
-      });
+      // Получаем текущего пользователя
+      final user = FirebaseAuth.instance.currentUser;
 
-      // Переход на главный экран
-      Navigator.pushReplacementNamed(context, '/nav-bar');
+      if (user != null) {
+        // Обновляем данные пользователя в Firestore
+        await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
+          'name': name,
+          'age': age,
+          'address': address,
+          'phone': phone,
+          'gender': gender,
+          'email': user.email ?? 'No Email', // Добавляем email
+        });
+
+        // Переход на главный экран
+        Navigator.pushReplacementNamed(context, '/nav-bar');
+      } else {
+        Get.snackbar(
+          AppLocalizations.of(context).translate('error'),
+          AppLocalizations.of(context).translate('user_not_authenticated'),
+        );
+      }
     } catch (e) {
       Get.snackbar(
         AppLocalizations.of(context).translate('error'),
@@ -93,6 +102,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
       );
     }
   }
+
 
 
   @override
