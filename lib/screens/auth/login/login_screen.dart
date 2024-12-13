@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:medical/110n/app_localizations.dart';
+import 'package:medical/screens/auth/register/register_screen.dart';
 import 'package:medical/utils/size_screen.dart';
 import 'package:medical/utils/color_screen.dart';
 
@@ -94,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Center(
                     child: TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/register');
+                        Get.to(RegisterScreen());
                       },
                       child: Text(
                         AppLocalizations.of(context).translate('no_account'),

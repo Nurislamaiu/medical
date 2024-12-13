@@ -7,6 +7,8 @@ import 'package:medical/utils/color_screen.dart';
 import 'package:medical/widgets/custom_text_field.dart';
 import 'package:get/get.dart';
 
+import '../../../nav_bar.dart';
+
 class UserInfoScreen extends StatefulWidget {
   @override
   _UserInfoScreenState createState() => _UserInfoScreenState();
@@ -20,6 +22,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   final TextEditingController _phoneController = TextEditingController();
 
   String _gender = 'Не выбран'; // Пол
+  late String email;
+  late String password;
   late String userId;
 
   // Маска для телефона +7 ### ### ## ##
@@ -31,20 +35,33 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    // Извлекаем email и password из аргументов
+    final arguments = ModalRoute.of(context)!.settings.arguments as Map<String, String>;
+    email = arguments['email']!;
+    password = arguments['password']!;
 
-    final user = FirebaseAuth.instance.currentUser;
+    // Создаем пользователя
+    _createUser(email, password);
+  }
 
-    if (user != null) {
-      userId = user.uid;
-    } else {
+  void _createUser(String email, String password) async {
+    try {
+      final userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      Get.snackbar(
+        AppLocalizations.of(context).translate('success'),
+        AppLocalizations.of(context).translate('user_created_successfully'),
+      );
+    } catch (e) {
       Get.snackbar(
         AppLocalizations.of(context).translate('error'),
-        AppLocalizations.of(context).translate('user_not_authenticated'),
+        AppLocalizations.of(context).translate('error_creating_user'),
       );
       Navigator.pushReplacementNamed(context, '/register');
     }
   }
-
 
   /// Save user info to firebase
   void _saveUserInfo() async {
@@ -88,7 +105,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
         });
 
         // Переход на главный экран
-        Navigator.pushReplacementNamed(context, '/nav-bar');
+        Get.offAll(NavBarScreen());
       } else {
         Get.snackbar(
           AppLocalizations.of(context).translate('error'),

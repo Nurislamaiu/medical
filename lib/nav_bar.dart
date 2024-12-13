@@ -3,6 +3,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:medical/screens/home/home_screen.dart';
+import 'package:medical/screens/notification/notification_screen.dart';
 import 'package:medical/screens/patient/request_history_screen.dart';
 import 'package:medical/screens/profile/user_profile_screen.dart';
 import 'package:medical/utils/color_screen.dart';
@@ -19,7 +20,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
   final List<Widget> _screens = [
     HomeScreen(), // Ваш Home Screen
     RequestHistoryScreen(),
-    GeoToAddressExample(),
+    NotificationScreen(),
     ProfileScreen(),
   ];
 

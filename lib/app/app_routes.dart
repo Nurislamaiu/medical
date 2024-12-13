@@ -10,6 +10,7 @@ import '../screens/home/consultation/consultation_knowledge_base_screen.dart';
 import '../screens/home/consultation/consultation_screen.dart';
 import '../screens/home/home_screen.dart';
 import '../screens/home/service/service_screen.dart';
+import '../screens/notification/notification_screen.dart';
 import '../screens/patient/request_history_screen.dart';
 import '../screens/patient/request_new_screen.dart';
 import '../screens/profile/user_edit_screen.dart';
@@ -26,6 +27,7 @@ class AppRoutes {
   static const String navBar = '/nav-bar';
   static const String home = '/home';
   static const String profile = '/profile';
+  static const String notification = '/notification';
   static const String settings = '/settings';
   static const String profileEdit = '/profile-edit';
   static const String service = '/service';
@@ -54,6 +56,7 @@ class AppRoutes {
       userInfo: (context) => UserInfoScreen(),
       navBar: (context) => NavBarScreen(),
       home: (context) => HomeScreen(),
+      notification: (context) => NotificationScreen(),
       profile: (context) => ProfileScreen(),
       settings: (context) => UserSettingsScreen(),
       profileEdit: (context) => EditProfileScreen(),
