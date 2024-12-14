@@ -24,7 +24,8 @@ class RequestService {
     }
 
     String formattedDate = '${selectedDate.day}.${selectedDate.month}.${selectedDate.year}';
-    String formattedTime = '${selectedTime.hour}:${selectedTime.minute.toString().padLeft(2, '0')}';
+    String formattedTime = '${selectedTime.hour.toString().padLeft(2, '0')}:${selectedTime.minute.toString().padLeft(2, '0')}';
+
 
     // Проверка на дублирование заявки
     final user = FirebaseAuth.instance.currentUser;

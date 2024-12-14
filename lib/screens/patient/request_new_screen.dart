@@ -1,16 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:medical/screens/patient/widgets/request_section.dart';
 import 'package:medical/screens/patient/widgets/request_service.dart';
 import 'package:medical/utils/color_screen.dart';
 import 'package:medical/utils/size_screen.dart';
-
-import '../../nav_bar.dart';
-
 class RequestNewScreen extends StatefulWidget {
   @override
   _RequestNewScreenState createState() => _RequestNewScreenState();
@@ -58,16 +51,41 @@ class _RequestNewScreenState extends State<RequestNewScreen> {
   }
 
   Future<void> _selectTime(BuildContext context) async {
+    final TimeOfDay now = TimeOfDay.now();
+
     final TimeOfDay? picked = await showTimePicker(
       context: context,
-      initialTime: TimeOfDay.now(),
+      initialTime: now,
     );
+
     if (picked != null) {
-      setState(() {
-        _selectedTime = picked;
-      });
+      // Проверяем, что выбранное время не в прошлом
+      final DateTime nowDateTime = DateTime(
+        DateTime.now().year,
+        DateTime.now().month,
+        DateTime.now().day,
+        now.hour,
+        now.minute,
+      );
+
+      final DateTime pickedDateTime = DateTime(
+        DateTime.now().year,
+        DateTime.now().month,
+        DateTime.now().day,
+        picked.hour,
+        picked.minute,
+      );
+
+      if (pickedDateTime.isAfter(nowDateTime)) {
+        setState(() {
+          _selectedTime = picked;
+        });
+      } else {
+        Get.snackbar('Упс', 'Вы не можете выбрать прошедшее время');
+      }
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -240,8 +258,7 @@ class _RequestNewScreenState extends State<RequestNewScreen> {
                             padding: const EdgeInsets.all(5),
                             decoration: BoxDecoration(
                               color: Colors.white,
-                              border: Border.all(
-                                  color: Colors.grey.withOpacity(0.5)),
+                              border: Border.all(color: Colors.grey.withOpacity(0.5)),
                               borderRadius: BorderRadius.circular(15),
                             ),
                             child: SizedBox(
@@ -250,9 +267,11 @@ class _RequestNewScreenState extends State<RequestNewScreen> {
                                 textAlign: TextAlign.center,
                                 _selectedTime == null
                                     ? ''
-                                    : '${_selectedTime!.hour}:${_selectedTime!.minute.toString().padLeft(2, '0')}',
+                                    : '${_selectedTime!.hour.toString().padLeft(2, '0')}:${_selectedTime!.minute.toString().padLeft(2, '0')}',
                                 style: const TextStyle(
-                                    fontSize: 12, fontWeight: FontWeight.bold),
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),

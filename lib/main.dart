@@ -1,6 +1,8 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -8,9 +10,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '110n/app_localizations.dart';
 import 'app/app_routes.dart';
+import 'firebase_service.dart';
 
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -82,7 +86,10 @@ class _MyAppState extends State<MyApp> {
         currentUser = user;
       });
     });
+    initializeLocalNotifications();
+    Timer.periodic(Duration(minutes: 1), (Timer t) => fetchAndNotify());
   }
+
 
   void setLocale(Locale locale) {
     setState(() {
