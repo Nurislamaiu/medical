@@ -8,7 +8,11 @@
   "next": "Next",
   "start": "Start",
   "skip": "Skip",
-  "your_detail" : "Enter your login details",
+
+
+
+
+  "your_detail": "Enter your login details",
   "login": "Login",
   "no_account": "No account? Register",
   "password": "Password",
@@ -32,6 +36,10 @@
   "error_info_screen": "User data could not be saved",
   "error": "Error",
   "invalid_phone_number": "Incorrect number validation",
+
+
+
+
   "your_health": "Your health is in good hands!",
   "submit_application": "Submit your application",
   "services": "Services",
@@ -40,6 +48,20 @@
   "qualified_specialists": "Qualified specialists",
   "sterility_and_safety": "Sterility and safety",
   "availability": "Availability 24/7",
-  "fast_delivery": "Fast delivery of medications"
+  "fast_delivery": "Fast delivery of medications",
 
+
+
+
+  "our_services_title": "Our Services!",
+  "our_services_subTitle": "Choose a service or consult a specialist.",
+  "intramuscular_injections": "Intramuscular Injections",
+  "intravenous_injections": "Intravenous Injections",
+  "ivs": "IVs",
+  "bandages": "Bandages",
+  "installation_of_a_urinary_catheter_and_stom": "Installation of a Urinary Catheter and Stoma",
+  "enemas": "Enemas",
+  "removal_of_alcohol_intoxication": "Removal of Alcohol Intoxication"
 }
+
+

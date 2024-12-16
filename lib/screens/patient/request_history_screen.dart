@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:medical/screens/patient/request_edit_screen.dart';
 
@@ -85,39 +86,73 @@ class RequestHistoryScreen extends StatelessWidget {
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(
-                      child: Lottie.asset(
-                    'assets/lottie/loading.json',
-                    width: 100,
-                    height: 100,
-                  ));
+                    child: Lottie.asset(
+                      'assets/lottie/loading.json',
+                      width: 100,
+                      height: 100,
+                    ),
+                  );
                 }
 
                 if (snapshot.hasError) {
                   return const Center(
-                      child: Text('Ошибка при загрузке данных',
-                          style: TextStyle(fontSize: 18, color: Colors.red)));
+                    child: Text(
+                      'Ошибка при загрузке данных',
+                      style: TextStyle(fontSize: 18, color: Colors.red),
+                    ),
+                  );
                 }
 
+                final now = DateTime.now(); // Текущая дата и время
                 final requests = snapshot.data?.docs ?? [];
+                final dateFormat = DateFormat('dd.MM.yyyy HH:mm'); // Формат для парсинга
 
-                if (requests.isEmpty) {
-                  print('Нет заявок для этого пользователя');
-                  return const Center(
-                      child: Text(
-                    'Нет заявок',
-                  ));
-                }
+                requests.forEach((request) async {
+                  final data = request.data() as Map<String, dynamic>;
+                  final date = data['date'];
+                  final time = data['time'];
 
-                requests.forEach((request) {
-                  print('Заявка: ${request.data()}');
+                  try {
+                    // Парсинг строки в DateTime
+                    final requestDateTime = dateFormat.parse('$date $time');
+
+                    // Если заявка устарела, удаляем её
+                    if (requestDateTime.isBefore(now)) {
+                      await requestsRef.doc(request.id).delete();
+                    }
+                  } catch (e) {
+                    print('Ошибка парсинга даты: $e');
+                  }
                 });
+
+// Фильтрация актуальных заявок
+                final activeRequests = requests.where((request) {
+                  final data = request.data() as Map<String, dynamic>;
+                  final date = data['date'];
+                  final time = data['time'];
+
+                  try {
+                    final requestDateTime = dateFormat.parse('$date $time');
+                    return requestDateTime.isAfter(now);
+                  } catch (e) {
+                    print('Ошибка парсинга даты: $e');
+                    return false;
+                  }
+                }).toList();
+
+
+                if (activeRequests.isEmpty) {
+                  return const Center(
+                    child: Text('Нет заявок'),
+                  );
+                }
 
                 return ListView.builder(
                   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  itemCount: requests.length,
+                  itemCount: activeRequests.length,
                   itemBuilder: (context, index) {
                     final request =
-                        requests[index].data() as Map<String, dynamic>;
+                    activeRequests[index].data() as Map<String, dynamic>;
                     final service = request['service'];
                     final date = request['date'];
                     final time = request['time'];
@@ -151,8 +186,8 @@ class RequestHistoryScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => EditRequestScreen(
-                                requestId: requests[index].id),
+                            builder: (context) =>
+                                EditRequestScreen(requestId: activeRequests[index].id),
                           ),
                         );
                       },
@@ -196,13 +231,11 @@ class RequestHistoryScreen extends StatelessWidget {
                                   children: [
                                     Text('Услуга: $service',
                                         style: const TextStyle(
-                                            fontSize: 12,
-                                            color: Colors.black54)),
+                                            fontSize: 12, color: Colors.black54)),
                                     SizedBox(height: 6),
                                     Text('Дата: $date | Время: $time',
                                         style: const TextStyle(
-                                            fontSize: 12,
-                                            color: Colors.black45)),
+                                            fontSize: 12, color: Colors.black45)),
                                   ],
                                 ),
                               ),
@@ -235,7 +268,7 @@ class RequestHistoryScreen extends StatelessWidget {
                   },
                 );
               },
-            ),
+            )
           ),
         ],
       ),

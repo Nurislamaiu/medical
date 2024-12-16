@@ -8,6 +8,10 @@
   "next": "Келесі",
   "start": "Бастау",
   "skip": "Өткізіп жіберу",
+
+
+
+
   "your_detail" : "Кіру мәліметтерін енгізіңіз",
   "login": "Кіру",
   "no_account": "Тіркелгі жоқ па? Тіркелу",
@@ -32,6 +36,10 @@
   "error_info_screen": "Пайдаланушы деректерін сақтау мүмкін болмады",
   "error": "Кате",
   "invalid_phone_number": "Дұрыс емес нөмір",
+
+
+
+
   "your_health": "Сіздің денсаулығыңыз сенімді қолда!",
   "submit_application": "Өтініш қалдыру",
   "services": "Қызметтер",
@@ -40,5 +48,18 @@
   "qualified_specialists": "Білікті мамандар",
   "sterility_and_safety": "Стерильділік және қауіпсіздік",
   "availability": "Қол жетімділік 24/7",
-  "fast_delivery": "Дәрі-дәрмектерді жылдам жеткізу"
+  "fast_delivery": "Дәрі-дәрмектерді жылдам жеткізу",
+
+
+
+  "our_services_title": "Біздің қызметтер!",
+  "our_services_subTitle": "Қызметті таңдаңыз немесе маманмен кеңесіңіз.",
+  "intramuscular_injections": "Бұлшықетке екпелер",
+  "intravenous_injections": "Көктамырға екпелер",
+  "ivs": "Тамшылатқыштар",
+  "bandages": "Бинттеу",
+  "installation_of_a_urinary_catheter_and_stom": "Зәр катетері мен стоманы орнату",
+  "enemas": "Клизмалар",
+  "removal_of_alcohol_intoxication": "Алкогольден улануды жою"
 }
+
