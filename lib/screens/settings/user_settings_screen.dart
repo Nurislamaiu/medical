@@ -133,7 +133,7 @@ class UserSettingsScreen extends StatelessWidget {
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
-                  title: "Пользовательское соглашениеее",
+                  title: "Пользовательское соглашение",
                   onTap: () {
                     // Логика для открытия страницы пользовательского соглашения
                     Navigator.pushNamed(context, '/agreement');
