@@ -2,15 +2,12 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '110n/app_localizations.dart';
 import 'app/app_routes.dart';
@@ -75,17 +72,11 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Locale _locale = Locale('ru');
-  User? currentUser;
 
   @override
   void initState() {
     super.initState();
     // Проверяем текущий статус пользователя
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      setState(() {
-        currentUser = user;
-      });
-    });
     initializeLocalNotifications();
     Timer.periodic(Duration(minutes: 1), (Timer t) => fetchAndNotify());
   }
@@ -102,7 +93,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: currentUser == null ? AppRoutes.onboarding : AppRoutes.navBar,
+      initialRoute: AppRoutes.splash,
       routes: AppRoutes.getRoutes(),
       locale: _locale,
       supportedLocales: const [
